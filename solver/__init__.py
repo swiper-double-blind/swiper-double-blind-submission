@@ -32,7 +32,7 @@ def wq_solve(inst: WeightQualification, linear: bool, no_jit: bool, verify: bool
 
 
 def wr_upper_bound_s(inst: WeightRestriction) -> Fraction:
-    # s := \frac{\fRn(1 - \fRw)n}{(\fRn - \fRw)W}
+    # s := \frac{\alpha_n (1 - \alpha_w)n}{(\alpha_n - \alpha_w)W}
     assert isinstance(inst.tw, Fraction)
     assert isinstance(inst.tn, Fraction)
     res = inst.tn * (1 - inst.tw) * inst.n / ((inst.tn - inst.tw) * inst.total_weight)
@@ -41,7 +41,7 @@ def wr_upper_bound_s(inst: WeightRestriction) -> Fraction:
 
 
 def wr_solution_upper_bound(inst: WeightRestriction) -> int:
-    # \left\lceil \frac{\fRw(1 - \fRw)}{\fRn - \fRw} n \right\rceil
+    # \left\lceil \frac{\alpha_w(1 - \alpha_w)}{\alpha_n - \alpha_w} n \right\rceil
     return ceil(inst.tw * (1 - inst.tw) / (inst.tn - inst.tw) * inst.n)
 
 
